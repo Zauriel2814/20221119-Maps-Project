@@ -14,14 +14,14 @@ const tileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{
 
 tileLayer.addTo(map);   
 
-loadCycle();
-loadParks();
-// loadData function for cycling path
-async function loadCycle(){
-  const response = await axios.get('cycling-path.geojson');
+loadData();
+// loadData function for cycling path and parks information
+async function loadData(){
+  const cycleResponse = await axios.get('cycling-path.geojson');
 
-  const cyclingLayer = L.geoJson(response.data, {
-    onEachFeature:(feature, layer) => {         
+  const cyclingLayer = L.geoJson(cycleResponse.data, {
+    onEachFeature:(feature, layer) => { 
+        //extracting only the region and department in the popup info
         let e = document.createElement('div');
         e.innerHTML = feature.properties.Description;
         let tds = e.querySelectorAll('td');
@@ -41,13 +41,10 @@ async function loadCycle(){
   cyclingLayer.setStyle({
     color: 'brown'
   });
-
-} 
-// loadParks function for nparks
-async function loadParks() {
-  const response = await axios.get("nparks.geojson");
-  const parksLayer = L.geoJson(response.data, {
-    onEachFeature:(feature, layer) => {         
+  const parksResponse = await axios.get("nparks.geojson");
+  const parksLayer = L.geoJson(parksResponse.data, {
+    onEachFeature:(feature, layer) => {   
+        //extracting only the region and department in the popup info      
         let e = document.createElement('div');
         e.innerHTML = feature.properties.Description;
         let tds = e.querySelectorAll('td');
@@ -66,4 +63,15 @@ async function loadParks() {
   parksLayer.setStyle({
     color:'green'
   })
-}
+  // create a layer control (allows the user to toggle between layers)
+  const baseLayers = {};
+  const  overlays ={
+      "Cycling": cyclingLayer,
+      "Park": parksLayer
+    }
+  L.control.layers(baseLayers, overlays).addTo(map)
+} //End loadData
+
+
+ 
+

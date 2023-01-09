@@ -21,12 +21,23 @@ async function loadCycle(){
   const response = await axios.get('cycling-path.geojson');
 
   const cyclingLayer = L.geoJson(response.data, {
-    onEachFeature: function(feature, layer) {
-        layer.bindPopup(feature.properties.Description);
-    }  
-  }); 
+    onEachFeature:(feature, layer) => {         
+        let e = document.createElement('div');
+        e.innerHTML = feature.properties.Description;
+        let tds = e.querySelectorAll('td');
+        let region = tds[0].innerHTML;
+        let department = tds[1].innerHTML;
+        layer.bindPopup(`<div>
+             <p>
+                  Region: ${region}
+             </p>
+             <p>
+                  Department: ${department}
+             </p>
+          </div>`);            
+     }
+}).addTo(map);
 
-  cyclingLayer.addTo(map);
   cyclingLayer.setStyle({
     color: 'brown'
   });
@@ -36,12 +47,22 @@ async function loadCycle(){
 async function loadParks() {
   const response = await axios.get("nparks.geojson");
   const parksLayer = L.geoJson(response.data, {
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup(feature.properties.Description);
-    }
-  })
-
-  parksLayer.addTo(map);
+    onEachFeature:(feature, layer) => {         
+        let e = document.createElement('div');
+        e.innerHTML = feature.properties.Description;
+        let tds = e.querySelectorAll('td');
+        let region = tds[0].innerHTML;
+        let type = tds[1].innerHTML;
+        layer.bindPopup(`<div>
+             <p>
+                  Name: ${region}
+             </p>
+             <p>
+                  Park type: ${type}
+             </p>
+          </div>`);            
+     }
+}).addTo(map);
   parksLayer.setStyle({
     color:'green'
   })

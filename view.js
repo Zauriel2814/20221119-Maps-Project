@@ -1,77 +1,64 @@
+function initMap() {
+    const centerPoint = [1.3521, 103.8198];
+    const map = L.map("map");
+    map.setView(centerPoint, 14);
 
-let singapore = [1.29, 103.85];
-const map = L.map('map');
-map.setView(singapore, 13);
+    // create the tile layer
+    const tileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
+    });
+    tileLayer.addTo(map);
+    return map;
+}
 
-const tileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
-});
+function displaySearchResults(results, resultLayer, map) {
 
-tileLayer.addTo(map);   
+    for (let r of results) {
+        const lat = r.geocodes.main.latitude;
+        const lng = r.geocodes.main.longitude;
+        const marker = L.marker([lat, lng]);
+        marker.addTo(resultLayer);
+        marker.bindPopup(function () {
+            let div = document.createElement('div');
+            div.innerHTML = `<h1>${r.name}</h1>
+                        <button class="btn">Click me</button>`;
+            div.querySelector(".btn").addEventListener("click", function () {
+                alert(r.name);
+            })
 
-loadData();
-// loadData function for cycling path and parks information
-async function loadData(){
-  const cycleResponse = await axios.get('cycling-path.geojson');
+            return div;
+        });
 
-  const cyclingLayer = L.geoJson(cycleResponse.data, {
-    onEachFeature:(feature, layer) => { 
-        //extracting only the region and department in the popup info
-        let e = document.createElement('div');
-        e.innerHTML = feature.properties.Description;
-        let tds = e.querySelectorAll('td');
-        let region = tds[0].innerHTML;
-        let department = tds[1].innerHTML;
-        layer.bindPopup(`<div>
-             <p>
-                  Region: ${region}
-             </p>
-             <p>
-                  Department: ${department}
-             </p>
-          </div>`);            
-     }
-}).addTo(map);
+        // display the search result under the search box
 
-  cyclingLayer.setStyle({
-    color: 'brown'
-  });
-  const parksResponse = await axios.get("nparks.geojson");
-  const parksLayer = L.geoJson(parksResponse.data, {
-    onEachFeature:(feature, layer) => {   
-        //extracting only the region and department in the popup info      
-        let e = document.createElement('div');
-        e.innerHTML = feature.properties.Description;
-        let tds = e.querySelectorAll('td');
-        let region = tds[0].innerHTML;
-        let type = tds[1].innerHTML;
-        layer.bindPopup(`<div>
-             <p>
-                  Name: ${region}
-             </p>
-             <p>
-                  Park type: ${type}
-             </p>
-          </div>`);            
-     }
-}).addTo(map);
-  parksLayer.setStyle({
-    color:'green'
-  })
-  // create a layer control (allows the user to toggle between layers)
-  const baseLayers = {};
-  const  overlays ={
-      "Cycling": cyclingLayer,
-      "Park": parksLayer
+        // create a new element to store the result
+        let resultElement = document.createElement('div');
+        resultElement.innerHTML = r.name;
+        resultElement.classList.add("search-result-entry");
+
+        document.querySelector("#search-results").appendChild(resultElement);
+        resultElement.addEventListener("click", function () {
+            map.flyTo([lat, lng]);
+            marker.openPopup();
+        })
+
     }
-  L.control.layers(baseLayers, overlays).addTo(map)
-} //End loadData
+}
 
-
- 
-
+function toggle_search() {
+    let searchContainer = document.querySelector("#search-container");
+    // check if the search container is visible
+    if (!searchContainer.style.display || searchContainer.style.display == 'none') {
+        // if not, then cause it to appear
+        // since the <div> is a block level element
+        // there when we display it we set 'style.display' to be 'block'
+        searchContainer.style.display = "block";
+    } else {
+        searchContainer.style.display = "none";
+    }
+}

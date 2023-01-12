@@ -3,6 +3,7 @@ async function main() {
     loadLayers()
     async function loadLayers() {
         let map = initMap();
+        //cycling tracks overlay 
         const cycleResponse = await axios.get('cycling-path.geojson');
         const cyclingLayer = L.geoJson(cycleResponse.data, {
             onEachFeature: (feature, layer) => {
@@ -25,6 +26,7 @@ async function main() {
         cyclingLayer.setStyle({
             color: 'brown'
         });
+        //nparks track overlay
         const parksResponse = await axios.get("nparks.geojson");
         const parksLayer = L.geoJson(parksResponse.data, {
             onEachFeature: (feature, layer) => {
@@ -47,6 +49,7 @@ async function main() {
         parksLayer.setStyle({
             color: 'green'
         })
+        //search results base layer
         const resultLayer = L.layerGroup();
         resultLayer.addTo(map);
 

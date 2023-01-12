@@ -70,7 +70,7 @@ async function main() {
             toggle_search();
         })
 
-        const baseLayers = { resultLayer };
+        const baseLayers = {}
         const overlays = {
             "Cycling": cyclingLayer,
             "Park": parksLayer

@@ -66,6 +66,8 @@ async function main() {
 
             // remove all existing markers from search
             resultLayer.clearLayers();
+            const searchContainer = document.querySelector("#search-results");
+            searchContainer.innerHTML = '';
 
             const searchTerms = document.querySelector("#search-terms").value;
             const center = map.getBounds().getCenter();
@@ -85,7 +87,7 @@ async function main() {
             "Park Track": parksLayer, 
             "Nature Reserve": natureLayer
         }
-        L.control.layers(baseLayers, overlays).addTo(map)
+        L.control.layers(baseLayers, overlays).setPosition('bottomleft').addTo(map)
 
 
     }

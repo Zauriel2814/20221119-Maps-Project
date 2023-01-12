@@ -3,6 +3,15 @@ async function main() {
     loadLayers()
     async function loadLayers() {
         let map = initMap();
+        const natureResponse = await axios.get('nature.geojson');
+        const natureLayer = L.geoJson(natureResponse.data, {
+            onEachFeature:function (feature, layer) {
+                layer.bindPopup(feature.properties.Name);
+            }
+        }).addTo(map);
+        natureLayer.setStyle({
+            color: 'turquoise'
+        });
         //cycling tracks overlay 
         const cycleResponse = await axios.get('cycling-path.geojson');
         const cyclingLayer = L.geoJson(cycleResponse.data, {
@@ -41,7 +50,7 @@ async function main() {
                               Name: ${region}
                          </p>
                          <p>
-                              Park type: ${type}
+                              Track type: ${type}
                          </p>
                       </div>`);
             }
@@ -72,8 +81,9 @@ async function main() {
 
         const baseLayers = {}
         const overlays = {
-            "Cycling": cyclingLayer,
-            "Park": parksLayer
+            "Cycling Track": cyclingLayer,
+            "Park Track": parksLayer, 
+            "Nature Reserve": natureLayer
         }
         L.control.layers(baseLayers, overlays).addTo(map)
 

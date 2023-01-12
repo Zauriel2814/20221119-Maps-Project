@@ -3,7 +3,7 @@
 }
 
 #map-container {
-    /* usee position:relative so that we can absolutely
+    /* use position:relative so that we can absolutely
       position the search container by coordinates inside div#map-container */
     position: relative;
 }

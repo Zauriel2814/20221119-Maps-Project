@@ -25,8 +25,10 @@
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            <img src="images/park.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">Parks and Makan
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="close-canvas" ></button>
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -50,21 +52,7 @@
   <div id="map-container">
     <!-- Display the map -->
     <div id="map"></div>
-
-    <!-- Display the search  -->
-    <!-- <div class="container-fluid" id="search-container">
-      <form class="d-flex mt-3" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-terms">
-        <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
-        <button class="btn btn-outline-success" type="submit" id="clear-search-btn">Clear</button>
-      </form>
-      <div class="container-fluid" id="search-results">
-      </div>
-    </div> -->
-
   </div>
-
-
 
   <!--Leaflet first-->
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"

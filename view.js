@@ -49,17 +49,4 @@ function displaySearchResults(results, resultLayer, map) {
     }
 }
 
-// function clear_search() {
-//     const resultLayer = L.layerGroup();
-//     resultLayer.clearLayers();
-//     const clearContainer = document.querySelector("#search-results");
-//     clearContainer.innerHTML = '';
-    
-//     // check if the search container is visible
-//     // if (!searchContainer.style.display || searchContainer.style.display == 'none') {
-       
-//     //     searchContainer.style.display = "block";
-//     // } else {
-//     //     searchContainer.style.display = "none";
-//     // }
-// }
+

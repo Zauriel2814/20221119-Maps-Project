@@ -83,8 +83,7 @@ async function main() {
         function clear_search() {
             resultLayer.clearLayers();
             const clearContainer = document.querySelector("#search-results");
-            clearContainer.innerHTML = '';
-            
+            clearContainer.innerHTML = ''; 
         }
 
         const baseLayers = {}

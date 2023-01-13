@@ -1,5 +1,5 @@
 #map {
-    height: 100vh;
+    height: 85vh;
 }
 
 #map-container {
@@ -29,7 +29,7 @@
     display: none;  /* don't show, hide */
 }
 
-#toggle-search-btn {
+#clear-search-btn {
     position: absolute;
     left: 60px;
     top: 25px;

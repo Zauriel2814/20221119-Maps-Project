@@ -64,7 +64,7 @@ async function main() {
 
         document.querySelector("#search-btn").addEventListener("click", async function () {
 
-            // remove all existing markers from search
+            // remove all existing markers and search elements
             resultLayer.clearLayers();
             const searchContainer = document.querySelector("#search-results");
             searchContainer.innerHTML = '';
@@ -77,9 +77,15 @@ async function main() {
 
         });
 
-        document.querySelector("#toggle-search-btn").addEventListener("click", function () {
-            toggle_search();
+        document.querySelector("#clear-search-btn").addEventListener("click", function () {
+            clear_search();
         })
+        function clear_search() {
+            resultLayer.clearLayers();
+            const clearContainer = document.querySelector("#search-results");
+            clearContainer.innerHTML = '';
+            
+        }
 
         const baseLayers = {}
         const overlays = {

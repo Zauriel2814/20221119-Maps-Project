@@ -39,7 +39,6 @@ function displaySearchResults(results, resultLayer, map) {
         // create a new element to store the result
         let resultElement = document.createElement('div');
         resultElement.innerHTML = r.name;
-        resultElement.classList.add("search-result-entry");
 
         document.querySelector("#search-results").appendChild(resultElement);
         resultElement.addEventListener("click", function () {
@@ -50,13 +49,17 @@ function displaySearchResults(results, resultLayer, map) {
     }
 }
 
-function toggle_search() {
-    let searchContainer = document.querySelector("#search-container");
-    // check if the search container is visible
-    if (!searchContainer.style.display || searchContainer.style.display == 'none') {
+// function clear_search() {
+//     const resultLayer = L.layerGroup();
+//     resultLayer.clearLayers();
+//     const clearContainer = document.querySelector("#search-results");
+//     clearContainer.innerHTML = '';
+    
+//     // check if the search container is visible
+//     // if (!searchContainer.style.display || searchContainer.style.display == 'none') {
        
-        searchContainer.style.display = "block";
-    } else {
-        searchContainer.style.display = "none";
-    }
-}
+//     //     searchContainer.style.display = "block";
+//     // } else {
+//     //     searchContainer.style.display = "none";
+//     // }
+// }

@@ -1,6 +1,7 @@
 # Parks and Makan (Map Theme Project 01)
 ## - Project Summary (User Story)
 
+The project is aimed for Outdoor enthusiast(trekkers, cyclist) and nature lovers. The app provides a platform for these users to check the location of nature parks and tracks and also search for food options around the vicinity. The ultimate aim of the project is to also be a platform for these Users to share nature sightings and events happening along these nature parks and tracks. It can also serve as a guide for the users to visit areas with higher density of nature sightings in order to get a glimpse of the flora and fauna around singapore. This may also aid researchers to record the variety of ecosystems of the connected nature reserves around singapore.
 ## - UI/UX
 
 ## - Features

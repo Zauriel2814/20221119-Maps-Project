@@ -14,37 +14,53 @@
 </head>
 
 <body>
-  <nav class="navbar bg-light">
+  <nav class="navbar bg-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="images/park.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-        Parks and Recreation
+         <img src="images/park.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+         Parks and Makan
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+          </ul>
+          <div class="container-fluid" id="search-container">
+            <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-terms">
+              <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
+              <button class="btn btn-outline-success" type="submit" id="clear-search-btn">Clear</button>
+            </form>
+            <div class="container-fluid" id="search-results">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </nav>
   <div id="map-container">
     <!-- Display the map -->
     <div id="map"></div>
 
-    <button id="clear-search-btn">Clear Search</button>
-
     <!-- Display the search  -->
-    <div class="container-sm" id="search-container">
-      <input type="text" id="search-terms" />
-      <button id="search-btn">Search</button>
-      <div class="container-sm"id="search-results">
-
+    <!-- <div class="container-fluid" id="search-container">
+      <form class="d-flex mt-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-terms">
+        <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
+        <button class="btn btn-outline-success" type="submit" id="clear-search-btn">Clear</button>
+      </form>
+      <div class="container-fluid" id="search-results">
       </div>
-    </div>
+    </div> -->
 
   </div>
 

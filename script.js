@@ -94,6 +94,7 @@ async function main() {
             "Nature Reserve": natureLayer
         }
         L.control.layers(baseLayers, overlays).setPosition('bottomleft').addTo(map)
+        map.zoomControl.setPosition('bottomright');
 
 
     }

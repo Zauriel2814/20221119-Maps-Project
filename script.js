@@ -10,7 +10,7 @@ async function main() {
             }
         }).addTo(map);
         natureLayer.setStyle({
-            color: 'turquoise'
+            color: 'blue'
         });
         //cycling tracks overlay 
         const cycleResponse = await axios.get('cycling-path.geojson');

@@ -16,7 +16,7 @@ function initMap() {
     return map;
 }
 const foodIcon = L.icon({
-    iconUrl: "images/restauran-marker.png",
+    iconUrl: "images/restaurant-marker.png",
     iconAnchor: [32,64],
     popupAnchor: [0,-64]
 });

@@ -1,12 +1,14 @@
 #map {
     height: 100vh;
 }
+
 #search-results {
     overflow-y: scroll;
     max-height: 400px;
 }
+
 .search-result-entry {
     padding: 5px;
-    margin-top:5px;
-    margin-bottom:5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

@@ -5,7 +5,7 @@ async function main() {
         let map = initMap();
         const natureResponse = await axios.get('nature.geojson');
         const natureLayer = L.geoJson(natureResponse.data, {
-            onEachFeature:function (feature, layer) {
+            onEachFeature: function (feature, layer) {
                 layer.bindPopup(feature.properties.Name);
             }
         }).addTo(map);
@@ -64,7 +64,7 @@ async function main() {
 
         document.querySelector("#search-btn").addEventListener("click", async function () {
 
-            // remove all existing markers and search elements
+            // remove all existing markers and search result elemants
             resultLayer.clearLayers();
             const searchContainer = document.querySelector("#search-results");
             searchContainer.innerHTML = '';
@@ -83,13 +83,13 @@ async function main() {
         function clear_search() {
             resultLayer.clearLayers();
             const clearContainer = document.querySelector("#search-results");
-            clearContainer.innerHTML = ''; 
+            clearContainer.innerHTML = '';
         }
 
         const baseLayers = {}
         const overlays = {
             "Cycling Track": cyclingLayer,
-            "Park Track": parksLayer, 
+            "Park Track": parksLayer,
             "Nature Reserve": natureLayer
         }
         L.control.layers(baseLayers, overlays).setPosition('bottomleft').addTo(map)

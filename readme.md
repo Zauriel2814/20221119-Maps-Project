@@ -11,7 +11,7 @@ The project is aimed for Outdoor enthusiast(trekkers, cyclist) and nature lovers
 - Eating places search function integrated using foursquare API with custom markers.
 - User can click on the individual search result to fly to the location on the map. 
 - Interface coded using bootstrap HTML/CSS for mobile responsiveness.
-- In future, form can be implemented for users to share about current or future events such as outdoor activities, ongoing construction works or nature sightings located at the parks, nature reserves or along the cycling tracks.
+- Modal form to be implemented for users to share about current or future events such as outdoor activities, ongoing construction works or nature sightings located at the parks, nature reserves or along the cycling tracks.
 
 ## - Technologies Used
 ### - Leaflet :
